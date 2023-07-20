@@ -9,7 +9,7 @@ from airflow.providers.amazon.aws.operators.lambda_function import LambdaInvokeF
 LAMBDA_FUNCTION_NAME = getenv("LAMBDA_FUNCTION_NAME", "hello-test")
 # [END howto_operator_lambda_env_variables]
 
-SAMPLE_EVENT = json.dumps({"value1": "value1", "value2": "value2", "value3": "value3"})
+SAMPLE_EVENT = json.dumps({"event": {"value1": "value1", "value2": "value2", "value3": "value3"}})
 
 with DAG(
     dag_id='example_lambda',

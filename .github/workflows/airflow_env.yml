@@ -20,5 +20,5 @@ jobs:
           host: ${{  secrets.HOST_DNS }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          source: my_test_dag.py
+          source: ./dags/my_test_dag.py
           target: /home/ubuntu/airflow/dags/

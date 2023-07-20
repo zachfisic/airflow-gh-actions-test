@@ -3,13 +3,13 @@ from datetime import datetime, timedelta
 from os import getenv
 
 from airflow import DAG
-from airflow.providers.amazon.aws.operators.aws_lambda import AwsLambdaInvokeFunctionOperator
+from airflow.providers.amazon.aws.operators.lambda_function import LambdaInvokeFunctionOperator
 
 # [START howto_operator_lambda_env_variables]
-LAMBDA_FUNCTION_NAME = getenv("LAMBDA_FUNCTION_NAME", "test-function")
+LAMBDA_FUNCTION_NAME = getenv("LAMBDA_FUNCTION_NAME", "hello-test")
 # [END howto_operator_lambda_env_variables]
 
-SAMPLE_EVENT = json.dumps({"SampleEvent": {"SampleData": {"Name": "XYZ", "DoB": "1993-01-01"}}})
+SAMPLE_EVENT = json.dumps({"value1": "value1", "value2": "value2", "value3": "value3"})
 
 with DAG(
     dag_id='example_lambda',
@@ -20,8 +20,8 @@ with DAG(
     catchup=False,
 ) as dag:
     # [START howto_lambda_operator]
-    invoke_lambda_function = AwsLambdaInvokeFunctionOperator(
-        task_id='setup__invoke_lambda_function',
+    invoke_lambda_function = LambdaInvokeFunctionOperator(
+        task_id='invoke_lambda_function',
         function_name=LAMBDA_FUNCTION_NAME,
         payload=SAMPLE_EVENT,
     )

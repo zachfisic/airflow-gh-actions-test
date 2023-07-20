@@ -4,7 +4,6 @@ on:
   push:     
     branches:  
       - master
-
   workflow_dispatch:
 
 jobs:
@@ -20,5 +19,6 @@ jobs:
           host: ${{  secrets.HOST_DNS }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          source: ./dags/my_test_dag.py
+          source: dags/*
           target: /home/ubuntu/airflow/dags/
+          strip_components: 1

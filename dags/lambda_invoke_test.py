@@ -10,6 +10,7 @@ import os
 # Default arguments and can be overwritten at operator initialization
 default_args = {
     'owner': 'Zach Fisic',
+    'start_date': datetime(2015, 7, 20),
     'depends_on_past': False,
     'schedule_interval': None,
     'email_on_failure': False,
